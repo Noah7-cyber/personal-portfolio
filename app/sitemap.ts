@@ -1,0 +1,1 @@
+import type { MetadataRoute } from 'next';import { siteUrl } from '@/lib/constants';export default function sitemap():MetadataRoute.Sitemap{return ['', '/resume'].map(p=>({url:siteUrl+p,lastModified:new Date()}))}

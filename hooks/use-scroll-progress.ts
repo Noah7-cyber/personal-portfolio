@@ -1,0 +1,1 @@
+'use client';import { useEffect,useState } from 'react';export function useScrollProgress(){const [p,set]=useState(0);useEffect(()=>{const f=()=>set(scrollY/(document.body.scrollHeight-innerHeight)||0);addEventListener('scroll',f,{passive:true});f();return()=>removeEventListener('scroll',f)},[]);return p;}
