@@ -1,0 +1,1 @@
+'use client';export default function Error({reset}:{reset:()=>void}){return <main className="section min-h-screen"><h1 className="title">System fault contained</h1><p className="sub mt-4">The interface failed safely without exposing internal details.</p><button className="btn btn-primary mt-8" onClick={reset}>Reload interface</button></main>}

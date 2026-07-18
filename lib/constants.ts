@@ -1,0 +1,3 @@
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+export const contact = { name:'Noah Ibrahim', role:'Full-Stack Developer & DevOps Engineer', support:'Mechatronics Engineer, Product Builder and IoT Developer', location:'Abuja, Nigeria', email:'noahibr2@gmail.com', phone:'+234 805 176 3431', github:'https://github.com/Noah7-cyber', linkedin:'https://www.linkedin.com/in/noah-ibrahim-50a3b3246', ginvoice:'https://www.ginvoice.com.ng' };
+export const navItems = [{id:'home',label:'Home'},{id:'about',label:'About'},{id:'experience',label:'Experience'},{id:'projects',label:'Projects'},{id:'architecture',label:'Architecture'},{id:'lab',label:'Engineering Lab'},{id:'skills',label:'Skills'},{id:'contact',label:'Contact'}] as const;

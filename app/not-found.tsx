@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function NotFound(){return <main className="section min-h-screen"><h1 className="title">404 · Signal Lost</h1><p className="sub mt-4">This route is outside the portfolio command map.</p><Link className="btn btn-primary mt-8" href="/">Return home</Link></main>}

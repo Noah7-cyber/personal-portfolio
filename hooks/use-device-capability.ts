@@ -1,0 +1,1 @@
+'use client';import { useEffect,useState } from 'react';export function useDeviceCapability(){const [low,set]=useState(false);useEffect(()=>set(innerWidth<768||navigator.hardwareConcurrency<=4||matchMedia('(prefers-reduced-motion: reduce)').matches),[]);return {lowPower:low};}
