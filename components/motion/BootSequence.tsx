@@ -1,2 +1,40 @@
-'use client';import { useEffect,useState } from 'react';import { usePrefersReducedMotion } from '@/hooks/use-prefers-reduced-motion';
-export default function BootSequence(){const reduced=usePrefersReducedMotion();const [show,setShow]=useState(false);useEffect(()=>{if(sessionStorage.getItem('booted'))return;setShow(true);const t=setTimeout(()=>{sessionStorage.setItem('booted','true');setShow(false)},reduced?300:1800);return()=>clearTimeout(t)},[reduced]);if(!show)return null;return <div className="boot fixed inset-0 z-[60] grid place-items-center bg-obsidian"><div className="panel rounded-3xl p-8 font-mono text-cyan"><p>Initialising engineering core</p><p>Loading software systems</p><p>Connecting product architecture</p><p>Portfolio ready</p><button className="btn btn-primary mt-4" onClick={()=>{sessionStorage.setItem('booted','true');setShow(false)}}>Skip</button></div></div>}
+'use client';
+
+import { useEffect, useState } from 'react';
+import { usePrefersReducedMotion } from '@/hooks/use-prefers-reduced-motion';
+
+export default function BootSequence() {
+  const reduced = usePrefersReducedMotion();
+  const [faded, setFaded] = useState(false);
+  const [unmounted, setUnmounted] = useState(false);
+
+  useEffect(() => {
+    if (reduced) {
+      setFaded(true);
+      setUnmounted(true);
+      return;
+    }
+    const raf = requestAnimationFrame(() => {
+      setFaded(true);
+    });
+    const timer = setTimeout(() => {
+      setUnmounted(true);
+    }, 1400);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
+  }, [reduced]);
+
+  if (unmounted) return null;
+
+  return (
+    <div
+      aria-hidden="true"
+      className={`boot pointer-events-none fixed inset-0 z-[60] bg-[#04060A] transition-opacity duration-1000 ease-out ${
+        faded ? 'opacity-0' : 'opacity-95'
+      }`}
+    />
+  );
+}
