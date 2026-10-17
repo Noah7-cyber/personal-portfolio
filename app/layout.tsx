@@ -16,8 +16,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: '#05070A',
-  colorScheme: 'dark',
+  themeColor: '#F4F2ED',
+  colorScheme: 'light',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -25,9 +25,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Noah Ibrahim — Full-Stack Developer & DevOps Engineer',
+  title: 'Noah Ibrahim — The Spatial Engineering Gallery',
   description:
-    'Portfolio of Noah Ibrahim, an Abuja-based full-stack developer and First-Class Mechatronics Engineer building resilient web products, offline-first platforms, DevOps systems, and IoT solutions.',
+    'Interactive 3D engineering exhibition and portfolio of Noah Ibrahim, an Abuja-based Full-Stack Developer, DevOps Engineer, and First-Class Mechatronics Engineer.',
   keywords: [
     'Noah Ibrahim',
     'Full-stack developer Nigeria',
@@ -46,18 +46,18 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Noah Ibrahim — Full-Stack Developer & DevOps Engineer',
+    title: 'Noah Ibrahim — The Spatial Engineering Gallery',
     description:
-      'Resilient web products, DevOps systems, offline-first platforms, and IoT solutions.',
+      'Explore interactive 3D installations of resilient web products, DevOps infrastructure, offline-first platforms, and mechatronics systems.',
     url: siteUrl,
     type: 'website',
     images: ['/opengraph-image'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Noah Ibrahim — Full-Stack Developer & DevOps Engineer',
+    title: 'Noah Ibrahim — The Spatial Engineering Gallery',
     description:
-      'Abuja-based full-stack developer and First-Class Mechatronics Engineer.',
+      'Abuja-based Full-Stack Developer, DevOps Engineer, and First-Class Mechatronics Engineer.',
   },
   icons: {
     icon: '/icons/favicon.svg',
@@ -89,12 +89,12 @@ export default function RootLayout({
   const website = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Noah Ibrahim Portfolio',
+    name: 'Noah Ibrahim — The Spatial Engineering Gallery',
     url: siteUrl,
   };
 
   return (
-    <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className={inter.className}>
         <script
           type="application/ld+json"

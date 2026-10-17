@@ -13,103 +13,117 @@ export const contact = {
   whitepenguin: 'https://whitepenguin.co/',
 };
 
-export const navItems = [
-  { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'engineering', label: 'Engineering' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'contact', label: 'Contact' },
-] as const;
+export type GalleryId =
+  | 'entrance'
+  | 'origin'
+  | 'workshop'
+  | 'laboratory'
+  | 'network'
+  | 'journey'
+  | 'connect';
 
-export interface WorldZoneConfig {
-  id: 'home' | 'about' | 'experience' | 'projects' | 'engineering' | 'skills' | 'contact';
-  sector: string;
-  label: string;
+export interface GalleryConfig {
+  id: GalleryId;
+  index: string;
+  code: string;
+  title: string;
   subtitle: string;
-  depthZ: number;
+  statement: string;
+  interactionHint: string;
+  position: [number, number, number];
   cameraPos: [number, number, number];
   lookAt: [number, number, number];
-  inspectCameraPos: [number, number, number];
-  inspectLookAt: [number, number, number];
 }
 
-export const worldZones: WorldZoneConfig[] = [
+export const galleries: GalleryConfig[] = [
   {
-    id: 'home',
-    sector: 'SECTOR 00',
-    label: 'The Sanctuary Atrium',
-    subtitle: 'Central Mechatronic Gyroscope & Living Core',
-    depthZ: 0,
-    cameraPos: [0, 2.5, 11.5],
-    lookAt: [0, 1.8, 0],
-    inspectCameraPos: [0, 2.2, 6.8],
-    inspectLookAt: [0, 1.8, 0],
+    id: 'entrance',
+    index: '00',
+    code: 'ROTUNDA',
+    title: 'NOAH IBRAHIM',
+    subtitle: 'Full-Stack · DevOps · Mechatronics · Founder',
+    statement: 'Engineering ideas into reality.',
+    interactionHint: 'Drag to orbit sculpture · Click mechanisms to inspect or explode',
+    position: [0, 0, 0],
+    cameraPos: [0, 2.3, 7.6],
+    lookAt: [0, 1.5, 0],
   },
   {
-    id: 'about',
-    sector: 'SECTOR 01',
-    label: 'Architectural Corridor',
-    subtitle: 'Four Pillars of Engineering Discipline',
-    depthZ: -18,
-    cameraPos: [2.8, 2.4, -9.5],
-    lookAt: [-0.8, 1.7, -18],
-    inspectCameraPos: [0, 2.6, -10.5],
-    inspectLookAt: [0, 1.8, -18],
+    id: 'origin',
+    index: '01',
+    code: 'THE ORIGIN',
+    title: 'About Noah',
+    subtitle: 'Four Disciplines, One Engineering Mind',
+    statement: 'Software architecture shaped by physical mechatronics rigor.',
+    interactionHint: 'Click any of the 4 kinetic pedestals in 3D space to inspect',
+    position: [0, 0, -22],
+    cameraPos: [0, 2.5, -14.2],
+    lookAt: [0, 1.4, -22],
   },
   {
-    id: 'experience',
-    sector: 'SECTOR 02',
-    label: 'Command & Production Wing',
-    subtitle: 'WhitePenguin SaaS, BrandDrive & Field Operations',
-    depthZ: -36,
-    cameraPos: [-3.0, 2.6, -27.5],
-    lookAt: [0.8, 1.9, -36],
-    inspectCameraPos: [0, 2.4, -29.0],
-    inspectLookAt: [0, 1.9, -36],
+    id: 'workshop',
+    index: '02',
+    code: 'THE WORKSHOP',
+    title: 'Featured Software Projects',
+    subtitle: 'GInvoice Offline-First Workstation & Production Systems',
+    statement: 'Disconnect the network in 3D and watch local queueing & sync.',
+    interactionHint: 'Toggle DISCONNECT NETWORK or click terminals to inspect projects',
+    position: [0, 0, -46],
+    cameraPos: [0, 2.7, -37.8],
+    lookAt: [0, 1.35, -46],
   },
   {
-    id: 'projects',
-    sector: 'SECTOR 03',
-    label: 'GInvoice Product Rotunda',
-    subtitle: 'Offline-First POS & Bi-Directional Sync Workstation',
-    depthZ: -56,
-    cameraPos: [3.2, 2.7, -47.0],
-    lookAt: [-0.6, 1.8, -56],
-    inspectCameraPos: [0, 2.6, -49.2],
-    inspectLookAt: [0, 1.7, -56],
+    id: 'laboratory',
+    index: '03',
+    code: 'THE LABORATORY',
+    title: 'Mechatronics & Digital Twins',
+    subtitle: '6-DOF Industrial Robot Arm & Wastewater Process Plant',
+    statement: 'Click robotic joints or process tanks to run live kinematics.',
+    interactionHint: 'Select robotic joints J1–J6 or adjust digital twin process parameters',
+    position: [0, 0, -70],
+    cameraPos: [0, 2.6, -61.5],
+    lookAt: [0, 1.4, -70],
   },
   {
-    id: 'engineering',
-    sector: 'SECTOR 04',
-    label: 'Mechatronics & Robotics Lab',
-    subtitle: '3-Axis Ultrasonic Gantry, 4WD Rover & PLC/SCADA',
-    depthZ: -76,
-    cameraPos: [-3.2, 2.6, -67.0],
-    lookAt: [0.6, 1.7, -76],
-    inspectCameraPos: [0, 2.5, -68.8],
-    inspectLookAt: [0, 1.6, -76],
+    id: 'network',
+    index: '04',
+    code: 'THE NETWORK',
+    title: 'DevOps & Software Architecture',
+    subtitle: 'Tangible Containers, Cloud VMs & CI/CD Pipelines',
+    statement: 'Select any physical server module to trace live deployment paths.',
+    interactionHint: 'Click 3D server blades, Docker containers, or database nodes',
+    position: [0, 0, -94],
+    cameraPos: [0, 2.6, -85.8],
+    lookAt: [0, 1.5, -94],
   },
   {
-    id: 'skills',
-    sector: 'SECTOR 05',
-    label: 'DevOps & Infrastructure Nexus',
-    subtitle: 'Containers, CI/CD Pipelines & Cloud Topology',
-    depthZ: -94,
-    cameraPos: [2.6, 3.0, -85.5],
-    lookAt: [-0.4, 2.0, -94],
-    inspectCameraPos: [0, 2.8, -87.0],
-    inspectLookAt: [0, 2.0, -94],
+    id: 'journey',
+    index: '05',
+    code: 'THE JOURNEY',
+    title: 'Experience & Education',
+    subtitle: 'BrandDrive · GInvoice · First-Class B.Eng Mechatronics',
+    statement: 'Production SaaS, commercial logistics, and industrial automation.',
+    interactionHint: 'Click any architectural stele in 3D to view verified role details',
+    position: [0, 0, -118],
+    cameraPos: [0, 2.5, -109.8],
+    lookAt: [0, 1.4, -118],
   },
   {
-    id: 'contact',
-    sector: 'SECTOR 06',
-    label: 'The Horizon Observatory',
-    subtitle: 'Direct Coordinates & System Collaboration',
-    depthZ: -112,
-    cameraPos: [0, 2.4, -104.0],
-    lookAt: [0, 1.8, -114],
-    inspectCameraPos: [0, 2.2, -106.0],
-    inspectLookAt: [0, 1.8, -114],
+    id: 'connect',
+    index: '06',
+    code: 'CONNECT',
+    title: 'Contact & Professional Links',
+    subtitle: 'Abuja, Nigeria · Open to Global Remote Engineering Roles',
+    statement: 'Initiate a direct engineering conversation or inspect full CV.',
+    interactionHint: 'Click the dispatch terminal to open the direct message channel',
+    position: [0, 0, -142],
+    cameraPos: [0, 2.3, -134.5],
+    lookAt: [0, 1.4, -142],
   },
 ];
+
+export const navItems = galleries.slice(1).map((g) => ({
+  id: g.id,
+  label: g.code,
+  subtitle: g.title,
+}));

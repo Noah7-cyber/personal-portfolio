@@ -1,7 +1,5 @@
 'use client';
 
-import { worldStore } from './world-state';
-
 class SanctuaryAudioEngine {
   private ctx: AudioContext | null = null;
   private masterGain: GainNode | null = null;
@@ -13,11 +11,9 @@ class SanctuaryAudioEngine {
   public toggle(): boolean {
     if (this.isRunning) {
       this.stop();
-      worldStore.setState({ audioEnabled: false });
       return false;
     } else {
       this.start();
-      worldStore.setState({ audioEnabled: true });
       return true;
     }
   }
@@ -26,7 +22,9 @@ class SanctuaryAudioEngine {
     if (typeof window === 'undefined' || this.isRunning) return;
 
     try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       if (!this.ctx) {
         this.ctx = new AudioCtx();
       }
@@ -37,32 +35,30 @@ class SanctuaryAudioEngine {
       const now = this.ctx.currentTime;
       const master = this.ctx.createGain();
       master.gain.setValueAtTime(0.001, now);
-      master.gain.exponentialRampToValueAtTime(0.035, now + 2.0);
+      master.gain.exponentialRampToValueAtTime(0.025, now + 1.5);
       master.connect(this.ctx.destination);
       this.masterGain = master;
 
-      // Low warm architectural harmonic drone (D2 + A2 fifth)
       const filter = this.ctx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(160, now);
+      filter.frequency.setValueAtTime(180, now);
 
       const o1 = this.ctx.createOscillator();
       o1.type = 'sine';
-      o1.frequency.setValueAtTime(73.42, now); // D2
+      o1.frequency.setValueAtTime(110.0, now);
 
       const o2 = this.ctx.createOscillator();
       o2.type = 'triangle';
-      o2.frequency.setValueAtTime(110.0, now); // A2
+      o2.frequency.setValueAtTime(164.81, now);
 
       const o2Gain = this.ctx.createGain();
-      o2Gain.gain.setValueAtTime(0.35, now);
+      o2Gain.gain.setValueAtTime(0.28, now);
 
-      // Slow breathing LFO on filter frequency
       const lfo = this.ctx.createOscillator();
       lfo.type = 'sine';
-      lfo.frequency.setValueAtTime(0.12, now);
+      lfo.frequency.setValueAtTime(0.1, now);
       const lfoGain = this.ctx.createGain();
-      lfoGain.gain.setValueAtTime(45, now);
+      lfoGain.gain.setValueAtTime(40, now);
 
       lfo.connect(lfoGain);
       lfoGain.connect(filter.frequency);
@@ -91,7 +87,7 @@ class SanctuaryAudioEngine {
       const now = this.ctx.currentTime;
       if (this.masterGain) {
         this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, now);
-        this.masterGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+        this.masterGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.4);
       }
       setTimeout(() => {
         try {
@@ -108,7 +104,7 @@ class SanctuaryAudioEngine {
         this.osc2 = null;
         this.lfo = null;
         this.isRunning = false;
-      }, 550);
+      }, 450);
     } catch {
       this.isRunning = false;
     }
@@ -122,15 +118,15 @@ class SanctuaryAudioEngine {
       const gain = this.ctx.createGain();
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, now);
-      osc.frequency.exponentialRampToValueAtTime(freq * 1.25, now + 0.09);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.2, now + 0.08);
 
-      gain.gain.setValueAtTime(0.025, now);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
+      gain.gain.setValueAtTime(0.02, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
 
       osc.connect(gain);
       gain.connect(this.ctx.destination);
       osc.start(now);
-      osc.stop(now + 0.15);
+      osc.stop(now + 0.13);
     } catch {
       // ignore
     }
