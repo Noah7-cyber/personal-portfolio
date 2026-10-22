@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { contact } from '@/lib/constants';
 import { experiences, projects, skills } from '@/lib/data';
 import ResumeActions from '@/components/resume/ResumeActions';
-import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, ArrowUpRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/resume' },
@@ -180,12 +180,29 @@ export default function ResumePage() {
                 </p>
               </article>
 
-              {projects.map((p) => (
-                <article key={p.title} className="space-y-1">
-                  <h3 className="text-sm sm:text-base font-bold text-graphite">{p.title}</h3>
-                  <p className="text-xs sm:text-sm text-slate">{p.result}</p>
-                </article>
-              ))}
+              {projects.map((p) => {
+                const liveLink = p.links?.find(
+                  (l) => l.href.startsWith('http') && !l.href.includes('github')
+                );
+                return (
+                  <article key={p.title} className="space-y-1">
+                    <div className="flex items-baseline justify-between gap-2">
+                      <h3 className="text-sm sm:text-base font-bold text-graphite">{p.title}</h3>
+                      {liveLink && (
+                        <a
+                          href={liveLink.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-mono text-electric font-bold hover:underline inline-flex items-center gap-0.5 no-print shrink-0"
+                        >
+                          {liveLink.label} <ArrowUpRight size={11} />
+                        </a>
+                      )}
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate">{p.result}</p>
+                  </article>
+                );
+              })}
             </div>
           </section>
 

@@ -214,4 +214,24 @@ export const EXHIBIT_CATALOG: Record<string, ExhibitDetail> = {
     stack: ['MATLAB', 'Simulink', 'Digital Twins', 'Supervisory Control', 'Siemens ET200SP', 'WinCC SCADA', 'React', 'TypeScript'],
     links: [{ label: 'View GitHub Profile', href: contact.github }],
   },
+  'ode-solver': {
+    id: 'ode-solver',
+    eyebrow: 'APPLIED MATHEMATICS & COMPUTATIONAL ENGINE · LIVE PRODUCTION',
+    title: 'Noah’s Differential Equations Classroom & Solver Studio',
+    subtitle: '1st–6th Order Symbolic Calculus, Adaptive RK5(4) Numerical Engine & Phase Space',
+    summary:
+      'A live educational mathematics platform and computational engine that turns abstract differential calculus into step-by-step chalkboard proofs and real-time interactive phase portraits in the browser.',
+    details: [
+      'Step-by-Step Guided Proofs: Generates full pedagogical chalkboard derivations covering exponential ansatz (y = eᵐˣ), characteristic polynomials, Euler’s formula for complex roots, and undetermined coefficients.',
+      'Adaptive RK5(4) Numerical Lab: Implements Cash-Karp Runge-Kutta numerical integration to simulate and graph nonlinear and higher-order ODE trajectories in real time.',
+      'Dynamic Canvas Phase Portraits: Interactive HTML5 Canvas plotting solution curves y(x), first derivatives y\'(x), and state-space orbits.',
+      'Live Parametric Tuning: Interactive constant sliders (c₁ … cₙ) allowing learners to observe how basis functions dynamically shape physical response.',
+      'Curated Engineering Presets: Instant loading of textbook physical systems including damped harmonic oscillators, resonance, and RLC circuits.',
+    ],
+    stack: ['JavaScript', 'Numerical Analysis', 'RK5(4)', 'HTML5 Canvas', 'KaTeX', 'GSAP', 'Vercel'],
+    links: [
+      { label: 'Launch Live Solver (Vercel)', href: contact.odeSolver },
+      { label: 'View GitHub Profile', href: contact.github },
+    ],
+  },
 };

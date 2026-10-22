@@ -89,6 +89,27 @@ export default function CommandPalette({ close }: Props) {
       },
     },
     {
+      id: 'inspect-ode-solver',
+      label: 'Inspect Differential Equations Solver Exhibit',
+      category: 'Exhibits',
+      icon: <Box size={15} className="text-electric" />,
+      run: () => {
+        worldStore.navigateToGallery('laboratory');
+        worldStore.setState({ selectedExhibit: EXHIBIT_CATALOG['ode-solver'] });
+        close();
+      },
+    },
+    {
+      id: 'ode-solver-live',
+      label: 'Launch Live Differential Equations Solver (Vercel)',
+      category: 'External',
+      icon: <ExternalLink size={15} className="text-electric" />,
+      run: () => {
+        window.open(contact.odeSolver, '_blank', 'noopener,noreferrer');
+        close();
+      },
+    },
+    {
       id: 'ginvoice-live',
       label: 'Launch Live GInvoice Platform (ginvoice.com.ng)',
       category: 'External',

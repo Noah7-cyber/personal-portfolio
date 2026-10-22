@@ -22,6 +22,9 @@ import { contact } from '@/lib/constants';
 import { projects } from '@/lib/data';
 import { EXHIBIT_CATALOG } from '@/lib/exhibit-catalog';
 
+const twinProject = projects.find((p) => p.title.includes('Wastewater')) || projects[2];
+const electrolyzerProject = projects.find((p) => p.title.includes('Electrolyzer')) || projects[1];
+
 const work = [
   {
     id: 'ginvoice',
@@ -44,6 +47,16 @@ const work = [
     detail: EXHIBIT_CATALOG.whitepenguin,
   },
   {
+    id: 'ode-solver',
+    title: 'Differential equations solver',
+    category: 'lab',
+    label: 'LIVE APP · APPLIED MATHEMATICS',
+    description:
+      'Step-by-step chalkboard proofs, adaptive RK5(4) numerical simulation, and real-time phase portraits in the browser.',
+    stack: ['JavaScript', 'Numerical RK5(4)', 'HTML5 Canvas', 'KaTeX'],
+    detail: EXHIBIT_CATALOG['ode-solver'],
+  },
+  {
     id: 'payment-reliability',
     title: 'Payment reliability',
     category: 'systems',
@@ -61,10 +74,10 @@ const work = [
     stack: ['MATLAB', 'Simulink', 'Digital Twins'],
     detail: {
       ...EXHIBIT_CATALOG['lab-digital-twin'],
-      title: projects[2].title,
-      summary: projects[2].problem,
-      details: [projects[2].approach, projects[2].result],
-      stack: projects[2].stack,
+      title: twinProject.title,
+      summary: twinProject.problem,
+      details: [twinProject.approach, twinProject.result],
+      stack: twinProject.stack,
     },
   },
   {
@@ -76,10 +89,10 @@ const work = [
     stack: ['React', 'TypeScript', 'Canvas'],
     detail: {
       ...EXHIBIT_CATALOG['lab-digital-twin'],
-      title: projects[1].title,
-      summary: projects[1].problem,
-      details: [projects[1].approach, projects[1].result],
-      stack: projects[1].stack,
+      title: electrolyzerProject.title,
+      summary: electrolyzerProject.problem,
+      details: [electrolyzerProject.approach, electrolyzerProject.result],
+      stack: electrolyzerProject.stack,
     },
   },
 ];
@@ -272,6 +285,45 @@ function SystemPreview({ type }: { type: string }) {
         <span className="mini-visual-label">REQUEST → VALIDATE → COMMIT</span>
       </div>
     );
+  if (type === 'ode-solver')
+    return (
+      <div className="small-project-visual ode-visual" aria-hidden="true">
+        <svg viewBox="0 0 280 110" fill="none">
+          <path
+            d="M15 85H265M15 55H265M15 25H265M40 10V100M90 10V100M140 10V100M190 10V100M240 10V100"
+            stroke="currentColor"
+            opacity=".12"
+          />
+          <path d="M25 100V15M20 55H265" stroke="currentColor" opacity=".35" strokeWidth="1.2" />
+          <path
+            d="M25 22C60 24 100 36 150 49S220 53 265 54"
+            stroke="currentColor"
+            opacity=".25"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+          />
+          <path
+            d="M25 88C60 86 100 74 150 61S220 57 265 56"
+            stroke="currentColor"
+            opacity=".25"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+          />
+          <path
+            d="M25 22 C 42 22, 52 88, 72 88 S 98 32, 118 32 S 148 72, 168 72 S 198 46, 218 46 S 242 58, 265 55"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          <circle cx="25" cy="22" r="3.5" fill="currentColor" />
+          <circle cx="72" cy="88" r="2.5" fill="currentColor" opacity=".6" />
+          <circle cx="118" cy="32" r="2.5" fill="currentColor" opacity=".6" />
+        </svg>
+        <span className="mini-visual-label">
+          ay″ + by′ + cy = 0 · RK5(4) ADAPTIVE SOLVER
+        </span>
+      </div>
+    );
   return (
     <div
       className={`small-project-visual ${type === 'digital-twin' ? 'twin-visual' : 'electrolyzer-visual'}`}
@@ -361,7 +413,7 @@ export default function ProjectShowcase() {
           {visible.length.toString().padStart(2, '0')} PROJECTS
         </span>
       </div>
-      <div className="project-grid">
+      <div className={`project-grid filter-${filter}`}>
         {visible.map((project) => (
           <article
             key={project.id}
@@ -475,12 +527,16 @@ export default function ProjectShowcase() {
                     ? contact.ginvoice
                     : selected.id === 'whitepenguin'
                       ? contact.whitepenguin
-                      : contact.github
+                      : selected.id === 'ode-solver'
+                        ? contact.odeSolver
+                        : contact.github
                 }
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {selected.category === 'product' ? 'Visit live product' : 'Explore GitHub profile'}
+                {selected.category === 'product' || selected.id === 'ode-solver'
+                  ? 'Launch live app'
+                  : 'Explore GitHub profile'}
                 <ArrowUpRight size={16} />
               </a>
               <button className="text-link" type="button" onClick={closeProject}>

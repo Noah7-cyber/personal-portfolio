@@ -285,26 +285,44 @@ export default function ResumeViewOverlay() {
               02 · Selected Software &amp; Engineering Systems
             </h2>
             <div className="space-y-4">
-              {projects.map((p) => (
-                <article
-                  key={p.title}
-                  className="rounded-2xl border border-graphite/10 bg-porcelain/50 p-4 space-y-1.5"
-                >
-                  <span className="font-mono text-[10px] font-bold uppercase text-electric">
-                    {p.category}
-                  </span>
-                  <h3 className="text-base font-bold text-graphite">{p.title}</h3>
-                  <p className="text-xs text-slate leading-relaxed">{p.approach}</p>
-                  <p className="text-xs text-graphite font-medium">{p.result}</p>
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {p.stack.map((s) => (
-                      <span key={s} className="chip !text-[10px] !py-0 !px-2">
-                        {s}
+              {projects.map((p) => {
+                const liveLink = p.links?.find(
+                  (l) => l.href.startsWith('http') && !l.href.includes('github')
+                );
+                return (
+                  <article
+                    key={p.title}
+                    className="rounded-2xl border border-graphite/10 bg-porcelain/50 p-4 space-y-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-mono text-[10px] font-bold uppercase text-electric">
+                        {p.category}
                       </span>
-                    ))}
-                  </div>
-                </article>
-              ))}
+                      {liveLink && (
+                        <a
+                          href={liveLink.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-[10px] font-bold text-electric hover:underline inline-flex items-center gap-1"
+                        >
+                          <span>{liveLink.label}</span>
+                          <ArrowUpRight size={11} />
+                        </a>
+                      )}
+                    </div>
+                    <h3 className="text-base font-bold text-graphite">{p.title}</h3>
+                    <p className="text-xs text-slate leading-relaxed">{p.approach}</p>
+                    <p className="text-xs text-graphite font-medium">{p.result}</p>
+                    <div className="flex flex-wrap gap-1 pt-1">
+                      {p.stack.map((s) => (
+                        <span key={s} className="chip !text-[10px] !py-0 !px-2">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
 

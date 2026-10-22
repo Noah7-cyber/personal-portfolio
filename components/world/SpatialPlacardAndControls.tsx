@@ -354,6 +354,7 @@ export default function SpatialPlacardAndControls() {
                 {[
                   { key: 'ginvoice', label: 'GInvoice Specs' },
                   { key: 'whitepenguin', label: 'WhitePenguin' },
+                  { key: 'ode-solver', label: 'ODE Solver' },
                   { key: 'payment-reliability', label: 'Payment API' },
                   { key: 'viodik', label: 'VIODIK' },
                   { key: 'tretize', label: 'Tretize' },
@@ -442,17 +443,31 @@ export default function SpatialPlacardAndControls() {
                     <Sliders size={12} className="text-coral" />
                     Digital Twin Blower ({ws.twinBlowerRpm}% RPM)
                   </span>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      worldStore.setState({
-                        selectedExhibit: EXHIBIT_CATALOG['lab-digital-twin'],
-                      })
-                    }
-                    className="text-electric font-bold hover:underline cursor-pointer"
-                  >
-                    Twin Details ↗
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        worldStore.setState({
+                          selectedExhibit: EXHIBIT_CATALOG['ode-solver'],
+                        })
+                      }
+                      className="text-electric font-bold hover:underline cursor-pointer"
+                    >
+                      ODE Solver ↗
+                    </button>
+                    <span>·</span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        worldStore.setState({
+                          selectedExhibit: EXHIBIT_CATALOG['lab-digital-twin'],
+                        })
+                      }
+                      className="text-electric font-bold hover:underline cursor-pointer"
+                    >
+                      Twin Details ↗
+                    </button>
+                  </div>
                 </div>
                 <input
                   type="range"

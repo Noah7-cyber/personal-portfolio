@@ -11,6 +11,7 @@ export const contact = {
   linkedin: 'https://www.linkedin.com/in/noah-ibrahim-50a3b3246',
   ginvoice: 'https://www.ginvoice.com.ng',
   whitepenguin: 'https://whitepenguin.co/',
+  odeSolver: 'https://differential-equations-solver.vercel.app/',
 };
 
 export type GalleryId =

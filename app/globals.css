@@ -671,6 +671,9 @@ textarea:focus-visible {
   grid-column: span 3;
 }
 .project-small {
+  grid-column: span 3;
+}
+.project-grid.filter-lab .project-small {
   grid-column: span 2;
 }
 .project-preview {
@@ -1220,6 +1223,10 @@ textarea:focus-visible {
 .electrolyzer-visual {
   background: #f0ebe4;
   color: #b0926a;
+}
+.ode-visual {
+  background: #edf1f8;
+  color: #315cff;
 }
 .small-project-visual > svg {
   width: 85%;

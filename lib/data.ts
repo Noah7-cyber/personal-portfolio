@@ -165,6 +165,21 @@ export interface ProjectItem {
 
 export const projects: ProjectItem[] = [
   {
+    title: 'Differential Equations Classroom & Solver Studio',
+    category: 'Applied Mathematics & Computational Engine',
+    problem:
+      'Translating higher-order differential equations (1st through 6th order) and complex analytical calculus into accessible, step-by-step visual proofs and real-time phase portraits.',
+    approach:
+      'Engineered a custom symbolic solver and adaptive Runge-Kutta numerical engine (RK5(4)) in JavaScript, paired with interactive Canvas phase-space rendering, KaTeX mathematical typesetting, and parametric constant sliders.',
+    result:
+      'Deployed live on Vercel with responsive dark/light chalkboard themes, curated engineering presets (harmonic oscillators, RLC circuits, resonance), and interactive pedagogical proofs.',
+    stack: ['JavaScript', 'Numerical RK5(4)', 'HTML5 Canvas', 'KaTeX', 'GSAP', 'Vercel'],
+    links: [
+      { label: 'Launch Live Classroom', href: contact.odeSolver },
+      { label: 'GitHub Profile', href: contact.github },
+    ],
+  },
+  {
     title: 'Payment Reliability Backend Assessment',
     category: 'Backend Reliability & Fintech',
     problem:
@@ -263,11 +278,11 @@ export const labDisciplines: LabItem[] = [
     tech: ['MATLAB', 'Simulink', 'System State Modeling', 'Digital Twins'],
   },
   {
-    title: 'Electrochemical & Physics Simulators',
+    title: 'Differential Equations & Physics Simulators',
     category: 'Interactive Web Software',
     description:
-      'Translating multi-variable physical chemistry equations into interactive browser applications with real-time feedback loops and dynamic canvas rendering.',
-    tech: ['React', 'TypeScript', 'Web Canvas', 'Physical Modeling'],
+      'Translating multi-variable physical chemistry and differential equations into interactive browser applications with real-time feedback loops, adaptive RK5(4) numerical solvers, and dynamic canvas rendering.',
+    tech: ['JavaScript', 'RK5(4)', 'KaTeX', 'React', 'TypeScript', 'Web Canvas'],
   },
   {
     title: 'Structural Gantry & Crack Detection',
@@ -320,6 +335,7 @@ export const skills: Record<string, string[]> = {
   ],
   'Mechatronics & Embedded Systems': [
     'MATLAB & Simulink',
+    'Numerical Methods & RK5(4)',
     'Arduino & ESP32 Prototyping',
     'Raspberry Pi',
     'Siemens ET200SP & WinCC SCADA',
