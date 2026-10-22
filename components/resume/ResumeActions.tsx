@@ -16,7 +16,7 @@ export default function ResumeActions() {
         className="btn btn-ghost !py-2 !px-3.5 !text-xs font-mono flex items-center gap-1.5"
       >
         <ArrowLeft size={15} />
-        <span>Return to 3D Gallery</span>
+        <span>Back to portfolio</span>
       </Link>
 
       <div className="flex flex-wrap items-center gap-2">

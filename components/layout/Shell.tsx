@@ -2,14 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import {
-  FileText,
-  Search,
-  ExternalLink,
-  Volume2,
-  VolumeX,
-  Box,
-} from 'lucide-react';
+import { FileText, Search, ExternalLink, Volume2, VolumeX, Box } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { contact, galleries } from '@/lib/constants';
 import { worldStore, useWorldState } from '@/lib/world-state';
@@ -55,6 +48,14 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       <header className="no-print pointer-events-none fixed left-0 right-0 top-3 sm:top-5 z-30 flex items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Top-Left Brand & Active Gallery Pill */}
         <div className="pointer-events-auto spatial-surface flex items-center gap-2.5 rounded-full px-3.5 py-2">
+          <Link
+            href="/"
+            className="font-mono text-xs text-slate hover:text-electric"
+            aria-label="Back to portfolio"
+          >
+            ←<span className="hidden lg:inline"> Portfolio</span>
+          </Link>
+          <span className="text-graphite/20">|</span>
           <button
             type="button"
             onClick={() => {

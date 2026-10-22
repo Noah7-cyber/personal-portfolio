@@ -1,2 +1,70 @@
-import { NextResponse } from 'next/server';import { Resend } from 'resend';import { contactSchema } from '@/lib/schemas';import { sanitize } from '@/lib/utils';
-export async function POST(req:Request){try{const parsed=contactSchema.safeParse(await req.json());if(!parsed.success)return NextResponse.json({ok:false,message:'Please correct the highlighted fields.'},{status:400});const d=parsed.data;if(d.company)return NextResponse.json({ok:true,message:'Message accepted.'});const clean={name:sanitize(d.name),email:sanitize(d.email),subject:sanitize(d.subject),message:sanitize(d.message)};const to=process.env.CONTACT_TO_EMAIL||'noahibr2@gmail.com';const from=process.env.CONTACT_FROM_EMAIL;const key=process.env.RESEND_API_KEY;if(!key||!from)return NextResponse.json({ok:true,mailto:`mailto:${to}?subject=${encodeURIComponent(clean.subject)}&body=${encodeURIComponent(clean.message)}`,message:'Email service is not configured here. Please use the mailto fallback or email noahibr2@gmail.com directly.'});const resend=new Resend(key);await resend.emails.send({from,to,replyTo:clean.email,subject:`Portfolio contact: ${clean.subject}`,text:`From: ${clean.name} <${clean.email}>\n\n${clean.message}`});return NextResponse.json({ok:true,message:'Message sent. Noah can reply by email.'})}catch{return NextResponse.json({ok:false,message:'The contact system failed safely. Please email noahibr2@gmail.com directly.'},{status:500})}}
+import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
+import { contact } from '@/lib/constants';
+import { contactSchema } from '@/lib/schemas';
+
+export async function POST(req: Request) {
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json(
+      { ok: false, message: 'Please send a valid contact form.' },
+      { status: 400 },
+    );
+  }
+
+  const parsed = contactSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json(
+      { ok: false, message: 'Please check the form fields and try again.' },
+      { status: 400 },
+    );
+  }
+
+  const data = parsed.data;
+  const to = process.env.CONTACT_TO_EMAIL || contact.email;
+  const from = process.env.CONTACT_FROM_EMAIL;
+  const key = process.env.RESEND_API_KEY;
+  const text = `From: ${data.name} <${data.email}>\n\n${data.message}`;
+
+  if (!key || !from) {
+    return NextResponse.json({
+      ok: false,
+      mailto: `mailto:${to}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(text)}`,
+      message: 'Your message is ready. Open your email app below to send it to Noah.',
+    });
+  }
+
+  try {
+    const resend = new Resend(key);
+    const { error } = await resend.emails.send({
+      from,
+      to,
+      replyTo: data.email,
+      subject: `Portfolio contact: ${data.subject}`,
+      text,
+    });
+    if (error) {
+      return NextResponse.json(
+        {
+          ok: false,
+          message: `Your message could not be delivered. Please try again or email ${contact.email} directly.`,
+        },
+        { status: 502 },
+      );
+    }
+    return NextResponse.json({
+      ok: true,
+      message: 'Message sent. Thanks for reaching out — Noah can reply by email.',
+    });
+  } catch {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: `Could not send your message. Please try again or email ${contact.email} directly.`,
+      },
+      { status: 500 },
+    );
+  }
+}

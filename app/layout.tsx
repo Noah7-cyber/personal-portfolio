@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: '#F4F2ED',
+  themeColor: '#FAF9F6',
   colorScheme: 'light',
   width: 'device-width',
   initialScale: 1,
@@ -25,9 +25,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Noah Ibrahim — The Spatial Engineering Gallery',
+  title: 'Noah Ibrahim — Developer & Engineer',
   description:
-    'Interactive 3D engineering exhibition and portfolio of Noah Ibrahim, an Abuja-based Full-Stack Developer, DevOps Engineer, and First-Class Mechatronics Engineer.',
+    'Thoughtful software. Dependable systems. Explore the work of Noah Ibrahim, a full-stack developer, DevOps engineer, and First-Class mechatronics graduate based in Abuja, Nigeria.',
   keywords: [
     'Noah Ibrahim',
     'Full-stack developer Nigeria',
@@ -46,16 +46,16 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Noah Ibrahim — The Spatial Engineering Gallery',
+    title: 'Noah Ibrahim — Developer & Engineer',
     description:
-      'Explore interactive 3D installations of resilient web products, DevOps infrastructure, offline-first platforms, and mechatronics systems.',
+      'Ideas, engineered for the real world. Full-stack products, reliable infrastructure, and mechatronics by Noah Ibrahim.',
     url: siteUrl,
     type: 'website',
     images: ['/opengraph-image'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Noah Ibrahim — The Spatial Engineering Gallery',
+    title: 'Noah Ibrahim — Developer & Engineer',
     description:
       'Abuja-based Full-Stack Developer, DevOps Engineer, and First-Class Mechatronics Engineer.',
   },
@@ -65,11 +65,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const person = {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -89,7 +85,7 @@ export default function RootLayout({
   const website = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Noah Ibrahim — The Spatial Engineering Gallery',
+    name: 'Noah Ibrahim — Developer & Engineer',
     url: siteUrl,
   };
 

@@ -5,6 +5,7 @@ import ResumeActions from '@/components/resume/ResumeActions';
 import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/resume' },
   title: 'Résumé — Noah Ibrahim | Full-Stack Developer & DevOps Engineer',
   description:
     'Comprehensive curriculum vitae of Noah Ibrahim. First-Class Mechatronics Engineering graduate, full-stack software engineer, and DevOps specialist.',
@@ -16,7 +17,11 @@ export default function ResumePage() {
       <div className="mx-auto max-w-4xl">
         <ResumeActions />
 
-        <main className="rounded-3xl p-6 sm:p-10 lg:p-12 space-y-8 bg-white border border-graphite/10 shadow-sm print:p-0 print:border-none print:shadow-none">
+        <main
+          id="main"
+          tabIndex={-1}
+          className="rounded-3xl p-6 sm:p-10 lg:p-12 space-y-8 bg-white border border-graphite/10 shadow-sm print:p-0 print:border-none print:shadow-none"
+        >
           {/* Header */}
           <header className="border-b border-graphite/10 pb-6">
             <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
@@ -76,7 +81,12 @@ export default function ResumePage() {
               Professional Summary
             </h2>
             <p className="text-sm sm:text-base leading-relaxed text-slate">
-              First-Class Mechatronics Engineering graduate and full-stack software engineer with deep expertise across modern web architectures, distributed backends, DevOps automation, and physical-computing interfaces. Creator of GInvoice, an offline-first PWA serving active commerce. Proven ability to architect high-reliability software, automate CI/CD deployments, and bridge complex physical hardware with cloud infrastructure.
+              First-Class Mechatronics Engineering graduate and full-stack software engineer with
+              deep expertise across modern web architectures, distributed backends, DevOps
+              automation, and physical-computing interfaces. Creator of GInvoice, an offline-first
+              PWA serving active commerce. Proven ability to architect high-reliability software,
+              automate CI/CD deployments, and bridge complex physical hardware with cloud
+              infrastructure.
             </p>
           </section>
 
@@ -92,19 +102,14 @@ export default function ResumePage() {
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
                     <div>
                       <h3 className="text-base sm:text-lg font-bold text-graphite">
-                        {e.role}{' '}
-                        <span className="text-slate font-medium">— {e.company}</span>
+                        {e.role} <span className="text-slate font-medium">— {e.company}</span>
                       </h3>
-                      {e.tag && (
-                        <span className="text-xs font-mono text-electric">{e.tag}</span>
-                      )}
+                      {e.tag && <span className="text-xs font-mono text-electric">{e.tag}</span>}
                     </div>
                     <span className="text-xs font-mono text-slate">{e.date}</span>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-slate leading-relaxed">
-                    {e.body}
-                  </p>
+                  <p className="text-xs sm:text-sm text-slate leading-relaxed">{e.body}</p>
 
                   {e.bullets && (
                     <ul className="list-disc pl-5 text-xs sm:text-sm text-graphite space-y-1">
@@ -137,8 +142,7 @@ export default function ResumePage() {
                 <article key={i.company} className="space-y-1">
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
                     <h3 className="text-sm sm:text-base font-bold text-graphite">
-                      {i.role}{' '}
-                      <span className="text-slate font-medium">· {i.company}</span>
+                      {i.role} <span className="text-slate font-medium">· {i.company}</span>
                     </h3>
                     <span className="text-xs font-mono text-slate">{i.date}</span>
                   </div>
@@ -167,20 +171,18 @@ export default function ResumePage() {
                   <h3 className="text-sm sm:text-base font-bold text-graphite">
                     GInvoice (Offline-First Invoicing Architecture)
                   </h3>
-                  <span className="text-xs font-mono text-electric font-bold">
-                    Live Product
-                  </span>
+                  <span className="text-xs font-mono text-electric font-bold">Live Product</span>
                 </div>
                 <p className="text-xs sm:text-sm text-slate">
-                  Full-stack MERN progressive web application with service-worker background sync, client-side idempotency protection, Paystack payment processing, and Server-Sent Events (SSE). 61 registered users, 3,000+ business records processed.
+                  Full-stack MERN progressive web application with service-worker background sync,
+                  client-side idempotency protection, Paystack payment processing, and Server-Sent
+                  Events (SSE). 61 registered users, 3,000+ business records processed.
                 </p>
               </article>
 
               {projects.map((p) => (
                 <article key={p.title} className="space-y-1">
-                  <h3 className="text-sm sm:text-base font-bold text-graphite">
-                    {p.title}
-                  </h3>
+                  <h3 className="text-sm sm:text-base font-bold text-graphite">{p.title}</h3>
                   <p className="text-xs sm:text-sm text-slate">{p.result}</p>
                 </article>
               ))}
@@ -197,9 +199,7 @@ export default function ResumePage() {
               {Object.entries(skills).map(([category, list]) => (
                 <div key={category} className="space-y-1">
                   <b className="text-graphite block font-semibold">{category}:</b>
-                  <p className="text-slate leading-relaxed font-mono text-xs">
-                    {list.join(', ')}
-                  </p>
+                  <p className="text-slate leading-relaxed font-mono text-xs">{list.join(', ')}</p>
                 </div>
               ))}
             </div>
@@ -235,10 +235,9 @@ export default function ResumePage() {
                   Engineered SMS-connected IoT node for agricultural environmental sensing.
                 </p>
                 <p>
-                  <strong className="text-graphite">
-                    Lead Mentor — Study Smart Organization:
-                  </strong>{' '}
-                  Instructed students in applied robotics, circuit prototyping, and coding fundamentals.
+                  <strong className="text-graphite">Lead Mentor — Study Smart Organization:</strong>{' '}
+                  Instructed students in applied robotics, circuit prototyping, and coding
+                  fundamentals.
                 </p>
               </div>
             </div>
